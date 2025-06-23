@@ -1,26 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Recoleta&display=swap");
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Design token til fonts */
+@theme {
+  --font-sans: "Arial", "Helvetica", sans-serif;
+  --font-display: "Recoleta", serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Body & baggrund */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-pink-100 text-pink-700 font-sans;
+  background-image: url("/imgs/paper-bg.png");
+  background-repeat: repeat;
+  background-size: contain;
+}
+
+/* Overskrifter */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-display;
+}
+
+/* Genbrug af dine formular-fokus etc. */
+input,
+textarea {
+  @apply bg-white border border-pink-300 rounded px-3 py-2 text-pink-800 placeholder-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-400;
 }
