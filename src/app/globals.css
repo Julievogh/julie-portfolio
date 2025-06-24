@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Recoleta&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap");
+
 @import "tailwindcss";
 
 /* Design token til fonts */
 @theme {
-  --font-sans: "Arial", "Helvetica", sans-serif;
+  --font-sans: "Manrope", Arial, Helvetica, sans-serif;
+
   --font-display: "Recoleta", serif;
 }
 
@@ -25,6 +28,13 @@ h6 {
   @apply font-display;
 }
 
+p {
+  @apply font-sans;
+}
+
+li {
+  @apply font-sans;
+}
 /* Genbrug af dine formular-fokus etc. */
 input,
 textarea {
