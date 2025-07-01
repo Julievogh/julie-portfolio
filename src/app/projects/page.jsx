@@ -46,7 +46,6 @@ const projects = [
     img: "/imgs/bridge-1.png",
     video: "",
   },
-
   {
     title: "Sofus & Solveig",
     desc: "Pop-up dining for curious foodies. Full identity, website, and SoMe. Built with Next.js and love.",
@@ -55,6 +54,12 @@ const projects = [
   },
   {
     title: "Dansk Erhvervs Beklædning",
+    desc: "Pop-up dining for curious foodies. Full identity, website, and SoMe. Built with Next.js and love.",
+    img: "/imgs/deb1.png",
+    video: "",
+  },
+  {
+    title: "Scrapbog",
     desc: "Pop-up dining for curious foodies. Full identity, website, and SoMe. Built with Next.js and love.",
     img: "/imgs/deb1.png",
     video: "",
@@ -146,7 +151,6 @@ export default function ProjectsPage() {
   const handleProjectClick = (idx) => {
     setActiveIdx(idx);
     setActiveGalleryIdx(0);
-    // Scroll container til top!
     if (imageContainerRef.current) {
       imageContainerRef.current.scrollTop = 0;
     }
@@ -259,7 +263,7 @@ export default function ProjectsPage() {
                 <img
                   src={project.img}
                   alt={project.title}
-                  className="object-contain max-h-[40vh] max-w-[80vw]"
+                  className="object-contain w-full h-auto"
                   style={{ display: "block" }}
                 />
               </div>
