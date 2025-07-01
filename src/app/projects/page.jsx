@@ -1,25 +1,62 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Footer from "../components/Footer"; // Sørg for at denne sti passer!
 
 const projects = [
   {
     title: "CleanSpace",
     desc: "Cleanspace is a modern cleaning SaaS platform – full website, branding, and dashboard design. Built for both joy and function.",
-    img: "/imgs/project-cleanspace.jpg",
+    img: "/imgs/cleanspace.png",
     video: "",
   },
   {
-    title: "G&G Vitamins",
+    title: "Vildmad",
     desc: "A landing page and webshop for a UK vitamin brand. Fresh UI, e-commerce features, and micro animations.",
-    img: "/imgs/project-gg.jpg",
+    img: "/imgs/vildmad.png",
+    video: "",
+  },
+  {
+    title: "Hvidovre I/F",
+    desc: "A landing page and webshop for a UK vitamin brand. Fresh UI, e-commerce features, and micro animations.",
+    img: "/imgs/hvidovre-if.png",
     video: "",
   },
   {
     title: "Cozy Social Club",
     desc: "Pop-up dining for curious foodies. Full identity, website, and SoMe. Built with Next.js and love.",
-    img: "/imgs/project-cozy.jpg",
+    img: "/imgs/cozysocialclub.png",
+    video: "",
+  },
+  {
+    title: "Copenhagen Light Festival",
+    desc: "Pop-up dining for curious foodies. Full identity, website, and SoMe. Built with Next.js and love.",
+    img: "/imgs/cphlightfest.png",
+    video: "",
+  },
+  {
+    title: "Leisner & Søn",
+    desc: "Pop-up dining for curious foodies. Full identity, website, and SoMe. Built with Next.js and love.",
+    img: "/imgs/leisner.png",
+    video: "",
+  },
+  {
+    title: "Bridge",
+    desc: "Pop-up dining for curious foodies. Full identity, website, and SoMe. Built with Next.js and love.",
+    img: "/imgs/bridge-1.png",
+    video: "",
+  },
+
+  {
+    title: "Sofus & Solveig",
+    desc: "Pop-up dining for curious foodies. Full identity, website, and SoMe. Built with Next.js and love.",
+    img: "/imgs/sofussolveig.png",
+    video: "",
+  },
+  {
+    title: "Dansk Erhvervs Beklædning",
+    desc: "Pop-up dining for curious foodies. Full identity, website, and SoMe. Built with Next.js and love.",
+    img: "/imgs/deb1.png",
     video: "",
   },
   {
@@ -91,8 +128,10 @@ const projects = [
 ];
 
 export default function ProjectsPage() {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [activeGalleryIdx, setActiveGalleryIdx] = useState(0);
+  const [activeIdx, setActiveIdx] = useState(0); // Which project is active (desktop)
+  const [activeGalleryIdx, setActiveGalleryIdx] = useState(0); // Which gallery image is active
+  const [mobileGalleryIndexes, setMobileGalleryIndexes] = useState({});
+  const imageContainerRef = useRef(null);
 
   const navLinks = [
     { id: "extra", label: "EXTRA", href: "/#extra" },
@@ -103,10 +142,25 @@ export default function ProjectsPage() {
   const activeProject = projects[activeIdx];
   const gallery = activeProject.gallery || [];
 
-  // Reset subgallery når projekt skiftes
+  // Reset gallery index + scroll top når du skifter projekt (desktop)
   const handleProjectClick = (idx) => {
     setActiveIdx(idx);
     setActiveGalleryIdx(0);
+    // Scroll container til top!
+    if (imageContainerRef.current) {
+      imageContainerRef.current.scrollTop = 0;
+    }
+  };
+
+  // For mobil: håndter hvilket billede der er aktivt pr. projekt
+  const handleMobileGalleryIdx = (projIdx, dir, galleryLength) => {
+    setMobileGalleryIndexes((prev) => {
+      const currIdx = prev[projIdx] || 0;
+      let newIdx = currIdx + dir;
+      if (newIdx < 0) newIdx = 0;
+      if (newIdx > galleryLength - 1) newIdx = galleryLength - 1;
+      return { ...prev, [projIdx]: newIdx };
+    });
   };
 
   return (
@@ -138,29 +192,31 @@ export default function ProjectsPage() {
         ))}
       </nav>
 
+      {/* ---------- MOBILE VISNING ---------- */}
       <div className="w-full max-w-6xl mx-auto lg:hidden">
         {projects.map((project, i) => {
-          // Special case for gallery
+          // Hvis projektet har et galleri (gallery array)
           if (project.gallery) {
-            // Gem aktivt index for logo-gallery pr. projekt
-            const [mobileGalleryIdx, setMobileGalleryIdx] = useState(0);
-
+            const mobileIdx = mobileGalleryIndexes[i] || 0;
             return (
               <div key={project.title} className="mb-10 last:mb-0">
                 <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <div className="bg-gray-200 aspect-video w-full rounded-lg shadow overflow-hidden mb-2 flex items-center justify-center">
+                <div className="rounded-xl shadow w-full h-[38vh] bg-white overflow-auto flex items-center justify-center mb-2">
                   <img
-                    src={project.gallery[mobileGalleryIdx].img}
-                    alt={project.gallery[mobileGalleryIdx].title}
-                    className="max-h-52 object-contain bg-white mx-auto"
+                    src={project.gallery[mobileIdx].img}
+                    alt={project.gallery[mobileIdx].title}
+                    className="object-contain max-h-[40vh] max-w-[80vw]"
+                    style={{ display: "block" }}
                   />
                 </div>
                 {/* PIL-KNAPPER */}
                 <div className="flex items-center justify-center gap-3 mb-2">
                   <button
                     aria-label="Forrige logo"
-                    disabled={mobileGalleryIdx === 0}
-                    onClick={() => setMobileGalleryIdx(mobileGalleryIdx - 1)}
+                    disabled={mobileIdx === 0}
+                    onClick={() =>
+                      handleMobileGalleryIdx(i, -1, project.gallery.length)
+                    }
                     className="p-2 rounded-full bg-orange-100 text-orange-600 disabled:opacity-30"
                   >
                     ‹
@@ -170,41 +226,41 @@ export default function ProjectsPage() {
                       <span
                         key={idx}
                         className={`w-2 h-2 rounded-full inline-block ${
-                          idx === mobileGalleryIdx
-                            ? "bg-orange-500"
-                            : "bg-orange-200"
+                          idx === mobileIdx ? "bg-orange-500" : "bg-orange-200"
                         }`}
                       />
                     ))}
                   </div>
                   <button
                     aria-label="Næste logo"
-                    disabled={mobileGalleryIdx === project.gallery.length - 1}
-                    onClick={() => setMobileGalleryIdx(mobileGalleryIdx + 1)}
+                    disabled={mobileIdx === project.gallery.length - 1}
+                    onClick={() =>
+                      handleMobileGalleryIdx(i, 1, project.gallery.length)
+                    }
                     className="p-2 rounded-full bg-orange-100 text-orange-600 disabled:opacity-30"
                   >
                     ›
                   </button>
                 </div>
                 <p className="text-base text-center font-semibold mb-1">
-                  {project.gallery[mobileGalleryIdx].title}
+                  {project.gallery[mobileIdx].title}
                 </p>
                 <p className="text-base text-center">
-                  {project.gallery[mobileGalleryIdx].desc}
+                  {project.gallery[mobileIdx].desc}
                 </p>
               </div>
             );
           }
-          // ALLE ANDRE PROJEKTER
+          // Hvis projektet ikke har galleri
           return (
             <div key={project.title} className="mb-10 last:mb-0">
               <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-              <div className="bg-gray-200 aspect-video w-full rounded-lg shadow overflow-hidden mb-2">
+              <div className="rounded-xl shadow w-full h-[38vh] bg-white overflow-auto flex items-start justify-center">
                 <img
                   src={project.img}
                   alt={project.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
+                  className="object-contain max-h-[40vh] max-w-[80vw]"
+                  style={{ display: "block" }}
                 />
               </div>
               <p className="text-base">{project.desc}</p>
@@ -232,18 +288,23 @@ export default function ProjectsPage() {
         </nav>
       </aside>
 
-      {/* --- DESKTOP: split hero & interactive --- */}
+      {/* ---------- DESKTOP VISNING ---------- */}
       <div className="hidden lg:flex w-full max-w-6xl mx-auto relative">
         <div className="flex flex-1 bg-white/90 rounded-2xl shadow-2xl min-h-[70vh] h-[70vh] w-full mx-auto overflow-hidden relative z-10">
           {/* Left: Main image/video or gallery */}
           <div className="flex-1 flex flex-col items-center justify-center bg-gray-100 p-8 min-w-[340px]">
             {gallery.length > 0 ? (
               <>
-                <img
-                  src={gallery[activeGalleryIdx].img}
-                  alt={gallery[activeGalleryIdx].title}
-                  className="rounded-xl shadow w-full h-[38vh] object-contain bg-white"
-                />
+                <div
+                  ref={imageContainerRef}
+                  className="rounded-xl shadow w-full h-[38vh] bg-white overflow-auto flex items-center justify-center"
+                >
+                  <img
+                    src={gallery[activeGalleryIdx].img}
+                    alt={gallery[activeGalleryIdx].title}
+                    className="object-contain max-h-[60vh] max-w-full"
+                  />
+                </div>
                 <div className="flex gap-2 mt-4 justify-center">
                   {gallery.map((item, idx) => (
                     <button
@@ -291,11 +352,18 @@ export default function ProjectsPage() {
               />
             ) : (
               <>
-                <img
-                  src={activeProject.img}
-                  alt={activeProject.title}
-                  className="rounded-xl shadow w-full h-[38vh] object-cover"
-                />
+                <div
+                  ref={imageContainerRef}
+                  className="bg-gray-200 w-full h-[300px] rounded-lg shadow overflow-y-auto flex justify-center items-start mb-2"
+                >
+                  <img
+                    src={activeProject.img}
+                    alt={activeProject.title}
+                    className="w-full h-auto min-h-full"
+                    style={{ display: "block" }}
+                  />
+                </div>
+
                 <div className="mt-4 bg-white/80 p-4 rounded shadow w-full text-center">
                   <p className="font-bold text-lg mb-2">
                     {activeProject.title}
