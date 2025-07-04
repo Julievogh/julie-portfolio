@@ -1,17 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import VideoHero from "./components/VideoHero";
 import Footer from "./components/Footer";
+import NavBar from "./components/NavBar";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("");
+  const [lang, setLang] = useState("en"); // <-- Tilføj sprog state
 
+  // Scroll tracking for active nav
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-
       const sections = [
         { id: "me", offset: document.getElementById("me")?.offsetTop || 0 },
         {
@@ -23,82 +24,138 @@ export default function Home() {
           offset: document.getElementById("extra")?.offsetTop || 0,
         },
       ];
-
       const current = sections
         .reverse()
         .find((section) => scrollY + 100 >= section.offset);
-
       if (current && current.id !== activeSection) {
         setActiveSection(current.id);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // run on load
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [activeSection]);
 
-  // Keep this in sync with your site sections
   const navLinks = [
-    { id: "extra", label: "EXTRA", href: "/#extra" },
-    { id: "projects", label: "PROJECTS", href: "/projects" },
-    { id: "me", label: "ME", href: "/#me" },
+    { id: "extra", label: lang === "en" ? "EXTRA" : "EKSTRA", href: "/#extra" },
+    {
+      id: "projects",
+      label: lang === "en" ? "PROJECTS" : "PROJEKTER",
+      href: "/projects",
+    },
+    { id: "me", label: lang === "en" ? "ME" : "MIG", href: "/" },
   ];
+
+  // Tekster til DK/EN
+  const texts = {
+    en: {
+      name: "Julie Vogh",
+      sub: "(Say it like Vogue)",
+      intro1: `Hi, I’m Julie – a curious frontend creative who builds smooth, user-friendly interfaces with equal parts logic and whimsy. I care about the details, the people, and making the web a little more delightful.`,
+      intro2: `I am looking for my next challenge - if you need a frontend developer or a UI/UX designer, or general marketing/customer-person, I would love to hear from you. I am based in Copenhagen, and part-time in Rome. I am interested in remote or hybrid work, and I am open to both freelance and full-time opportunities.`,
+      location: "Copenhagen / Rome",
+      contact: "Frontend Designer",
+      remote: "Remote or on-site",
+      oneWoman: "One-woman show ✨",
+      projects: "Projects",
+      projectsIntro:
+        "A mix of client work, personal ideas and fun explorations. I believe creativity is a muscle – and I love flexing it.",
+      skills: "Here are my skills",
+      skillsList: [
+        "Figma",
+        "HTML / CSS / Tailwind / JS",
+        "React / Next.js",
+        "WordPress / Elementor",
+        "Adobe Illustrator",
+        "AI is my personal assistant",
+        "SoMe, SEO",
+        "Marketing",
+        "Customer support",
+        "Content creation",
+        "Empathy & Curiosity",
+        "Problem-solving with Creativity",
+        "Working until it works",
+      ],
+    },
+    dk: {
+      name: "Julie Vogh",
+      sub: "(Udtales som Fogh på dansk)",
+      intro1: `Hej, jeg er Julie – en nysgerrig frontend-udvikler, der bygger lækre, brugervenlige interfaces med lige dele logik og leg. Jeg elsker detaljen, mennesket og at gøre nettet lidt mere hyggeligt.`,
+      intro2: `Jeg søger nye udfordringer – har du brug for en frontend-udvikler, UI/UX-designer eller marketing/kundeservice-person, vil jeg meget gerne høre fra dig. Jeg er baseret i København og delvist i Rom. Jeg er interesseret i remote eller hybrid-arbejde, både freelance og fast.`,
+      location: "København / Rom",
+      contact: "Frontend-designer",
+      remote: "Remote eller fysisk",
+      oneWoman: "Én-kvinde-hær ✨",
+      projects: "Projekter",
+      projectsIntro:
+        "En blanding af kundeprojekter, egne idéer og legende eksperimenter. Kreativitet er en muskel – og jeg elsker at bruge den.",
+      skills: "Mine kompetencer",
+      skillsList: [
+        "Figma",
+        "HTML / CSS / Tailwind / JS",
+        "React / Next.js",
+        "WordPress / Elementor",
+        "Adobe Illustrator",
+        "AI er min personlige assistent",
+        "SoMe, SEO",
+        "Marketing",
+        "Kundesupport",
+        "Content creation",
+        "Empati & nysgerrighed",
+        "Kreativ problemløsning",
+        "Giver ikke op før det virker",
+      ],
+    },
+  };
+
+  const t = texts[lang];
 
   return (
     <main className="min-h-screen flex flex-col items-center bg-white text-pink-600 font-serif bg-[url('/imgs/paper-bg.png')] bg-repeat p-6 lg:p-12 scroll-smooth">
-      {/* MOBILE HORIZONTAL NAV */}
-      <nav className="flex lg:hidden justify-center gap-6 mb-6 text-sm tracking-widest font-sans text-pink-600 font-medium">
-        {["extra", "projects", "me"].map((id) => (
-          <a
-            key={id}
-            href={`/${id}`}
-            className={`transition-transform duration-300 hover:scale-105 ${
-              activeSection === id
-                ? "text-pink-900 font-bold underline underline-offset-4"
-                : ""
-            }`}
-          >
-            {id.toUpperCase()}
-          </a>
-        ))}
-      </nav>
-      {/* ==== SHARED MAIN CONTAINER ==== */}
+      {/* Sprogtoggle øverst til højre */}
+      <div className="fixed top-4 right-6 z-50 flex gap-2 items-center">
+        <button
+          className={`px-2 py-1 rounded font-bold ${
+            lang === "dk" ? "bg-pink-200" : "hover:bg-pink-100"
+          }`}
+          onClick={() => setLang("dk")}
+        >
+          🇩🇰
+        </button>
+        <button
+          className={`px-2 py-1 rounded font-bold ${
+            lang === "en" ? "bg-pink-200" : "hover:bg-pink-100"
+          }`}
+          onClick={() => setLang("en")}
+        >
+          🇬🇧
+        </button>
+      </div>
+
+      <NavBar navLinks={navLinks} activeSection={activeSection} color="pink" />
+
       <div className="w-full max-w-6xl mx-auto">
-        {/* HEADLINE */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-left">Julie Vogh</h1>
+          <h1 className="text-3xl font-bold text-left">{t.name}</h1>
           <h2 className="text-2xl font-semibold text-pink-500 text-left">
-            (Say it like Vogue)
+            {t.sub}
           </h2>
         </div>
 
-        {/* MAIN FLEX ROW (video/intro + info/skills) */}
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* DESKTOP VERTICAL NAV ROTATED (left sidebar) */}
-          {/* --- Vertical Nav --- */}
+          {/* DESKTOP VERTICAL NAV */}
           <aside className="hidden lg:block absolute left-4 top-1/2 transform -rotate-90 -translate-y-1/2 origin-top-left z-20">
-            <nav className="flex gap-12 text-med tracking-widest text-pink-600 font-medium">
-              {navLinks.map((nav) => (
-                <a
-                  key={nav.id}
-                  href={nav.href}
-                  className={`transition-all duration-300 hover:tracking-[0.2em] hover:scale-105 font-sans ${
-                    nav.id === "projects"
-                      ? "text-pink-900 font-bold underline underline-offset-4"
-                      : ""
-                  }`}
-                >
-                  {nav.label}
-                </a>
-              ))}
-            </nav>
+            <NavBar
+              navLinks={navLinks}
+              activeSection={activeSection}
+              color="pink"
+              vertical
+            />
           </aside>
 
-          {/* LEFT COLUMN: Video + Intro */}
+          {/* LEFT COLUMN */}
           <section className="flex-1 max-w-3xl" id="me">
             <div className="p-0 flex flex-col gap-4">
-              {/* Video */}
               <div className="bg-gray-200 aspect-video w-full overflow-hidden rounded-lg">
                 <VideoHero
                   videoSrc="/imgs/profile-video.mp4"
@@ -106,30 +163,16 @@ export default function Home() {
                   alt="Julie Vogh"
                 />
               </div>
-              {/* Intro Texts */}
               <div className="bg-white/70 p-4 rounded shadow text-sm font-sans">
-                <p>
-                  Hi, I’m Julie – a curious frontend creative who builds smooth,
-                  user-friendly interfaces with equal parts logic and whimsy. I
-                  care about the details, the people, and making the web a
-                  little more delightful.
-                </p>
+                <p>{t.intro1}</p>
               </div>
               <div className="bg-white/70 p-4 rounded shadow text-sm font-sans">
-                <p>
-                  I am looking for my next challenge - if you need a
-                  <strong> frontend developer</strong> or a{" "}
-                  <strong>UI/UX designer</strong>, or general{" "}
-                  <strong>marketing/customer-person</strong>, I would love to
-                  hear from you. I am based in Copenhagen, and part-time in
-                  Rome. I am interested in remote or hybrid work, and I am open
-                  to both freelance and full-time opportunities.
-                </p>
+                <p>{t.intro2}</p>
               </div>
             </div>
           </section>
 
-          {/* RIGHT COLUMN: Info/Skills */}
+          {/* RIGHT COLUMN */}
           <section
             className="flex-1 text-sm pl-2 space-y-4 max-w-sm mt-0 lg:mt-0"
             id="projects"
@@ -138,7 +181,7 @@ export default function Home() {
               <h3>
                 <strong>Julie Sølva Eschricht Vogh</strong>
               </h3>
-              <p>Copenhagen / Rome</p>
+              <p>{t.location}</p>
               <p>
                 <a
                   href="#"
@@ -157,42 +200,27 @@ export default function Home() {
                 </a>
               </p>
               <p>+45 23 84 80 88</p>
-              <p>Frontend Designer</p>
-
-              <p>Remote or on-site</p>
-              <p className="italic">One-woman show ✨</p>
+              <p>{t.contact}</p>
+              <p>{t.remote}</p>
+              <p className="italic">{t.oneWoman}</p>
             </div>
 
             <div>
-              <h2 className="font-semibold mt-6">Projects</h2>
-              <p>
-                A mix of client work, personal ideas and fun explorations. I
-                believe creativity is a muscle – and I love flexing it.
-              </p>
+              <h2 className="font-semibold mt-6">{t.projects}</h2>
+              <p>{t.projectsIntro}</p>
             </div>
 
             <div>
-              <h2 className="font-semibold mt-6">Here are my skills</h2>
+              <h2 className="font-semibold mt-6">{t.skills}</h2>
               <ul className="list-disc pl-5 space-y-1">
-                <li>Figma</li>
-                <li>HTML / CSS / Tailwind / JS</li>
-                <li>React / Next.js</li>
-                <li>WordPress / Elementor</li>
-                <li>Adobe Illustrator</li>
-                <li>AI is my personal assistant</li>
-                <li>SoMe, SEO</li>
-                <li>Marketing</li>
-                <li>Customer support</li>
-                <li>Content creation</li>
-                <li>Empathy & Curiosity</li>
-                <li>Problem-solving with Creativity</li>
-                <li>Working until it works</li>
+                {t.skillsList.map((skill, i) => (
+                  <li key={i}>{skill}</li>
+                ))}
               </ul>
             </div>
           </section>
         </div>
       </div>
-      {/* CTA Footer */}
       <Footer />
     </main>
   );
