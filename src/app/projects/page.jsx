@@ -13,6 +13,8 @@ const projects = [
     },
     img: "/imgs/cleanspace.png",
     tools: ["Elementor Pro", "WordPress", "Figma", "Branding"],
+    link: "https://cleanspace.dk",
+    linkLabel: "Website",
   },
   {
     title: { dk: "Vildmad", en: "Vildmad" },
@@ -22,6 +24,8 @@ const projects = [
     },
     img: "/imgs/vildmad.png",
     tools: ["Illustrator", "HTML/CSS", "Research", "Figma"],
+    link: "https://www.figma.com/file/demo-vildmad",
+    linkLabel: "Figma",
   },
   {
     title: { dk: "Hvidovre I/F", en: "Hvidovre I/F" },
@@ -31,6 +35,8 @@ const projects = [
     },
     img: "/imgs/hvidovre-if.png",
     tools: ["WordPress", "Elementor", "UI/UX", "Support"],
+    link: "https://hvidovreif.dk",
+    linkLabel: "Website",
   },
   {
     title: { dk: "Cozy Social Club", en: "Cozy Social Club" },
@@ -40,6 +46,8 @@ const projects = [
     },
     img: "/imgs/cozysocialclub.png",
     tools: ["Next.js", "Sanity CMS", "Figma", "Branding", "Trello"],
+    link: "https://cozysocialclub.dk",
+    linkLabel: "Website",
   },
   {
     title: { dk: "Copenhagen Light Festival", en: "Copenhagen Light Festival" },
@@ -49,6 +57,8 @@ const projects = [
     },
     img: "/imgs/cphlightfest.png",
     tools: ["Figma", "Adobe XD", "Branding", "UI/UX"],
+    link: "https://www.figma.com/file/lightfest",
+    linkLabel: "Figma",
   },
   {
     title: { dk: "Leisner & Søn", en: "Leisner & Søn" },
@@ -58,6 +68,8 @@ const projects = [
     },
     img: "/imgs/leisner.png",
     tools: ["WordPress", "Figma", "UI/UX", "Support"],
+    link: "https://leisnerogsoen.dk",
+    linkLabel: "Website",
   },
   {
     title: { dk: "Bridge", en: "Bridge" },
@@ -67,6 +79,8 @@ const projects = [
     },
     img: "/imgs/bridge-1.png",
     tools: ["Figma", "Branding", "UI/UX", "Webflow"],
+    link: "https://www.figma.com/file/bridge",
+    linkLabel: "Figma",
   },
   {
     title: { dk: "Sofus & Solveig", en: "Sofus & Solveig" },
@@ -76,6 +90,8 @@ const projects = [
     },
     img: "/imgs/sofussolveig.png",
     tools: ["WooCommerce", "WordPress", "Figma", "Produktfoto"],
+    link: "https://sofussolveig.dk",
+    linkLabel: "Website",
   },
   {
     title: { dk: "Dansk Erhvervs Beklædning", en: "Dansk Erhvervs Beklædning" },
@@ -85,6 +101,8 @@ const projects = [
     },
     img: "/imgs/deb1.png",
     tools: ["WordPress", "Elementor", "Figma", "UI/UX"],
+    link: "https://deb.dk",
+    linkLabel: "Website",
   },
   {
     title: { dk: "Foo Festival", en: "Foo Festival" },
@@ -94,64 +112,8 @@ const projects = [
     },
     img: "/imgs/foofestival.png",
     tools: ["Next.js", "Figma", "Simple DB", "Branding", "Illustration"],
-  },
-  {
-    title: { dk: "Logos", en: "Logos" },
-    desc: {
-      dk: "Forskellige logo-designs – fra klassisk til legende.",
-      en: "Various logo designs – from classic to playful.",
-    },
-    img: "/imgs/project-vildmad.jpg",
-    gallery: [
-      {
-        img: "/imgs/truee.svg",
-        title: { dk: "Truee Service", en: "Truee Service" },
-        desc: {
-          dk: "Redesign af logo for et rengøringsfirma – moderne, farverigt og let genkendeligt.",
-          en: "Logo redesign for a cleaning company – modern, colorful, and easily recognizable.",
-        },
-      },
-      {
-        img: "/imgs/logo-vildmad.svg",
-        title: { dk: "Vild Mad - for børn!", en: "Vild Mad - for børn!" },
-        desc: {
-          dk: "Redesign af logo for Vild Mad for børn, med legende, børnevenlige elementer.",
-          en: "Logo redesign for Vild Mad for Børn, with playful, child-friendly elements.",
-        },
-      },
-      {
-        img: "/imgs/all-logos-csc.png",
-        title: { dk: "Cozy Social Club", en: "Cozy Social Club" },
-        desc: {
-          dk: "Konceptlogo for Cozy Social Club, inspireret af kundens ønske om en rå, 'Care Bear'-agtig bamse.",
-          en: "Concept logo for Cozy Social Club, inspired by the client's wish for a raw, 'Care Bear'-like bear.",
-        },
-      },
-      {
-        img: "/imgs/logo-stempel-stor.svg",
-        title: { dk: "CleanSpace Logo 2", en: "CleanSpace Logo 2" },
-        desc: {
-          dk: "Main version af CleanSpace-logoet – stærk kontrast og seriøst udtryk, der skiller sig ud.",
-          en: "Main version of the CleanSpace logo – strong contrast and a serious look that stands out.",
-        },
-      },
-      {
-        img: "/imgs/logo-all-cleanspace.jpg",
-        title: { dk: "CleanSpace Logo 1", en: "CleanSpace Logo 1" },
-        desc: {
-          dk: "Alternative variationer – en moderne og digital tilgang til rengøringsbranchen.",
-          en: "Alternative variations – a modern, digital approach to the cleaning industry.",
-        },
-      },
-      {
-        img: "/imgs/Cleanspace-ideer.png",
-        title: { dk: "CleanSpace Logo 1", en: "CleanSpace Logo 1" },
-        desc: {
-          dk: "Alternative ideer til CleanSpace-logoet.",
-          en: "Alternative ideas for the CleanSpace logo.",
-        },
-      },
-    ],
+    link: "https://www.figma.com/file/foofestival",
+    linkLabel: "Figma",
   },
   {
     title: { dk: "Illustrations", en: "Illustrations" },
@@ -454,7 +416,6 @@ const projects = [
 ];
 
 // --------- KOMPONENT START ----------
-
 export default function ProjectsPage() {
   const [lang, setLang] = useState("en");
   const [activeIdx, setActiveIdx] = useState(0);
@@ -511,9 +472,9 @@ export default function ProjectsPage() {
   return (
     <main className="min-h-screen flex flex-col items-center bg-white text-orange-600 font-sans bg-[url('/imgs/paper-bg.png')] bg-repeat p-6 lg:p-12 scroll-smooth">
       {/* Sprogtoggle */}
-      <div className="fixed mt-12 lg:mt-2 top-4 right-6 z-50 flex gap-2 items-center">
+      <div className="fixed mt-12 lg:mt-2 top-4 right-6 z-50 flex gap-2 items-center ">
         <button
-          className={`px-2 py-1 rounded font-bold ${
+          className={`px-2 py-1 rounded font-bold cursor-pointer ${
             lang === "dk" ? "bg-orange-200" : "hover:bg-orange-100"
           }`}
           onClick={() => setLang("dk")}
@@ -521,7 +482,7 @@ export default function ProjectsPage() {
           🇩🇰
         </button>
         <button
-          className={`px-2 py-1 rounded font-bold ${
+          className={`px-2 py-1 rounded font-bold cursor-pointer ${
             lang === "en" ? "bg-orange-200" : "hover:bg-orange-100"
           }`}
           onClick={() => setLang("en")}
@@ -529,7 +490,9 @@ export default function ProjectsPage() {
           🇬🇧
         </button>
       </div>
+
       <NavBar navLinks={navLinks} activeSection="projects" />
+
       <div className="w-full max-w-6xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-left">
@@ -540,6 +503,7 @@ export default function ProjectsPage() {
           </h2>
         </div>
       </div>
+
       {/* ---------- MOBILE ---------- */}
       <div className="w-full max-w-6xl mx-auto lg:hidden">
         {projects.map((project, i) => {
@@ -616,6 +580,31 @@ export default function ProjectsPage() {
                   {galleryArr[mobileIdx].title[lang]}:{" "}
                   {galleryArr[mobileIdx].desc[lang]}
                 </p>
+                {/* --- Projekt-link (mobile) --- */}
+                {project.link && (
+                  <div className="mt-4 flex justify-center">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="
+                        inline-flex items-center gap-1 text-sm
+                        text-orange-600 border border-orange-300 rounded-lg px-3 py-1
+                        hover:bg-orange-500 hover:text-white transition
+                        focus:outline-none focus-visible:outline-2 focus-visible:outline-orange-300
+                        underline underline-offset-2 decoration-dotted
+                        shadow-sm
+                      "
+                      style={{ maxWidth: "max-content" }}
+                    >
+                      <span role="img" aria-label="link">
+                        🔗
+                      </span>
+                      {project.linkLabel ||
+                        (lang === "dk" ? "Se projekt" : "See project")}
+                    </a>
+                  </div>
+                )}
               </div>
             );
           }
@@ -644,10 +633,36 @@ export default function ProjectsPage() {
                   ))}
                 </div>
               )}
+              {/* --- Projekt-link (mobile) --- */}
+              {project.link && (
+                <div className="mt-4 flex justify-center">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="
+                      inline-flex items-center gap-1 text-sm
+                      text-orange-600 border border-orange-300 rounded-lg px-3 py-1
+                      hover:bg-orange-500 hover:text-white transition
+                      focus:outline-none focus-visible:outline-2 focus-visible:outline-orange-300
+                      underline underline-offset-2 decoration-dotted
+                      shadow-sm
+                    "
+                    style={{ maxWidth: "max-content" }}
+                  >
+                    <span role="img" aria-label="link">
+                      🔗
+                    </span>
+                    {project.linkLabel ||
+                      (lang === "dk" ? "Se projekt" : "See project")}
+                  </a>
+                </div>
+              )}
             </div>
           );
         })}
       </div>
+
       {/* ---------- DESKTOP ---------- */}
       <div className="hidden lg:flex w-full max-w-6xl mx-auto relative">
         <div className="flex flex-1 bg-white/90 rounded-2xl shadow-2xl min-h-[70vh] h-[70vh] w-full mx-auto overflow-hidden relative z-10">
@@ -699,6 +714,31 @@ export default function ProjectsPage() {
                   <p className="text-base mb-2">
                     {gallery[activeGalleryIdx].desc[lang]}
                   </p>
+                  {/* --- Projekt-link (desktop) --- */}
+                  {activeProject.link && (
+                    <div className="flex justify-center mt-4">
+                      <a
+                        href={activeProject.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="
+        inline-flex items-center gap-1 text-sm
+        text-orange-600 bg-orange-50 border border-orange-200
+        rounded-full px-3 py-1
+        hover:bg-orange-100 hover:text-orange-700 transition
+        focus:outline-none focus-visible:outline-2 focus-visible:outline-orange-300
+        shadow-sm font-medium
+      "
+                        style={{ maxWidth: "max-content" }}
+                      >
+                        <span role="img" aria-label="link">
+                          🔗
+                        </span>
+                        {activeProject.linkLabel ||
+                          (lang === "dk" ? "Se projekt" : "See project")}
+                      </a>
+                    </div>
+                  )}
                 </div>
               </>
             ) : (
@@ -731,16 +771,41 @@ export default function ProjectsPage() {
                       ))}
                     </div>
                   )}
+                  {/* --- Projekt-link (desktop, uden galleri) --- */}
+                  {activeProject.link && (
+                    <div className="mt-4 flex justify-center">
+                      <a
+                        href={activeProject.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="
+                          inline-flex items-center gap-1 text-sm
+                          text-orange-600 border border-orange-300 rounded-lg px-3 py-1
+                          hover:bg-orange-500 hover:text-white transition
+                          focus:outline-none focus-visible:outline-2 focus-visible:outline-orange-300
+                          underline underline-offset-2 decoration-dotted
+                          shadow-sm
+                        "
+                        style={{ maxWidth: "max-content" }}
+                      >
+                        <span role="img" aria-label="link">
+                          🔗
+                        </span>
+                        {activeProject.linkLabel ||
+                          (lang === "dk" ? "Se projekt" : "See project")}
+                      </a>
+                    </div>
+                  )}
                 </div>
               </>
             )}
           </div>
           {/* Right: Project selectors */}
-          <div className="flex-1 flex flex-col p-8 gap-2 justify-center max-w-lg">
+          <div className="flex-1 flex flex-col p-6 gap-2 justify-center max-w-lg">
             <h2 className="text-2xl font-bold mb-8 text-orange-800">
               {lang === "dk" ? "Projekter" : "Projects"}
             </h2>
-            <div className="flex flex-col gap-2 mb-8 max-h-[400px] overflow-y-auto pr-2">
+            <div className="flex flex-col gap-1 mb-8 max-h-[400px] overflow-y-auto pr-2">
               {projects.map((project, idx) => (
                 <button
                   key={project.title.dk}
@@ -748,6 +813,9 @@ export default function ProjectsPage() {
                     setActiveIdx(idx);
                     setActiveGalleryIdx(0);
                     setLastManualClick(Date.now());
+                    setTimeout(() => {
+                      imageContainerRef.current?.scrollTo(0, 0);
+                    }, 0);
                   }}
                   className={`text-left px-3 py-2 rounded transition-all font-semibold cursor-pointer
                     ${

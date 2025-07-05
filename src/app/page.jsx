@@ -155,7 +155,7 @@ export default function Home() {
       {/* Sprogtoggle øverst til højre */}
       <div className="fixed mt-12 lg:mt-2 top-4 right-6 z-50 flex gap-2 items-center">
         <button
-          className={`px-2 py-1 rounded font-bold ${
+          className={`px-2 py-1 rounded font-bold cursor-pointer ${
             lang === "dk" ? "bg-pink-200" : "hover:bg-pink-100"
           }`}
           onClick={() => setLang("dk")}
@@ -163,7 +163,7 @@ export default function Home() {
           🇩🇰
         </button>
         <button
-          className={`px-2 py-1 rounded font-bold ${
+          className={`px-2 py-1 rounded font-bold cursor-pointer ${
             lang === "en" ? "bg-pink-200" : "hover:bg-pink-100"
           }`}
           onClick={() => setLang("en")}

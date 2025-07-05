@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 export default function VideoHero({
   videoSrc = "/imgs/profile-video.mp4",
   alt = "Julie Vogh",
-  images = ["/imgs/julie7.jpeg", "/imgs/julie1.jpeg", "/imgs/julie6.jpeg"], // add your images here
+  images = ["/imgs/julie9.jpeg", "/imgs/julie1.jpeg", "/imgs/julie6.jpeg"], // add your images here
 }) {
   const [showImage, setShowImage] = useState(false);
   const videoRef = useRef();

@@ -23,7 +23,7 @@ export default function Footer({ showArrow }) {
         className="block mb-6 text-center"
       >
         <p className="text-lg font-medium hover:underline cursor-pointer">
-          Hit me up
+          <strong> Hit me up</strong>
         </p>
         <span className="text-pink-600"> ✨</span>
       </a>
