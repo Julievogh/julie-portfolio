@@ -456,7 +456,7 @@ const projects = [
 // --------- KOMPONENT START ----------
 
 export default function ProjectsPage() {
-  const [lang, setLang] = useState("dk");
+  const [lang, setLang] = useState("en");
   const [activeIdx, setActiveIdx] = useState(0);
   const [activeGalleryIdx, setActiveGalleryIdx] = useState(0);
   const [lastManualClick, setLastManualClick] = useState(Date.now());
@@ -490,13 +490,18 @@ export default function ProjectsPage() {
   }, [activeIdx, activeGalleryIdx, lastManualClick]);
 
   const navLinks = [
-    { id: "extra", label: lang === "dk" ? "EXTRA" : "EXTRA", href: "/#extra" },
     {
       id: "projects",
       label: lang === "dk" ? "PROJEKTER" : "PROJECTS",
       href: "/projects",
     },
-    { id: "me", label: lang === "dk" ? "JEG" : "ME", href: "/" },
+    { id: "me", label: lang === "dk" ? "MIG" : "ME", href: "/" },
+    { id: "extra", label: lang === "dk" ? "EXTRA" : "EXTRA", href: "/#extra" },
+    {
+      id: "contact",
+      label: lang === "dk" ? "KONTAKT" : "CONTACT",
+      href: "/#contact",
+    },
   ];
 
   const safeIdx = Math.max(0, Math.min(activeIdx, projects.length - 1));
@@ -506,7 +511,7 @@ export default function ProjectsPage() {
   return (
     <main className="min-h-screen flex flex-col items-center bg-white text-orange-600 font-sans bg-[url('/imgs/paper-bg.png')] bg-repeat p-6 lg:p-12 scroll-smooth">
       {/* Sprogtoggle */}
-      <div className="fixed top-4 right-6 z-50 flex gap-2 items-center">
+      <div className="fixed mt-12 lg:mt-2 top-4 right-6 z-50 flex gap-2 items-center">
         <button
           className={`px-2 py-1 rounded font-bold ${
             lang === "dk" ? "bg-orange-200" : "hover:bg-orange-100"
@@ -763,7 +768,6 @@ export default function ProjectsPage() {
           </div>
         </div>
       </div>
-      <Footer />
     </main>
   );
 }

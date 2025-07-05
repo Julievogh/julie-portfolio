@@ -1,64 +1,67 @@
 "use client";
+import { usePathname, useRouter } from "next/navigation";
 
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-
-// Define farver pr. sektion
-const sectionColors = {
-  me: {
-    base: "text-pink-600",
-    active: "text-pink-800 underline underline-offset-4 font-bold",
-    hover: "hover:text-pink-800",
-  },
-  projects: {
-    base: "text-orange-600",
-    active: "text-orange-800 underline underline-offset-4 font-bold",
-    hover: "hover:text-orange-800",
-  },
-  extra: {
-    base: "text-green-600",
-    active: "text-green-800 underline underline-offset-4 font-bold",
-    hover: "hover:text-green-800",
-  },
-  // Tilføj flere hvis du har flere sektioner
-};
-
-export default function NavBar({ navLinks, className = "" }) {
+export default function NavBar({
+  navLinks,
+  activeSection = "",
+  onContactClick,
+  className = "",
+  ...props
+}) {
   const pathname = usePathname();
-  const [activeSection, setActiveSection] = useState("");
+  const router = useRouter();
 
-  useEffect(() => {
-    // Find aktivt link ud fra URL path
-    if (pathname.startsWith("/projects")) setActiveSection("projects");
-    else if (pathname === "/" || pathname.startsWith("/#me"))
-      setActiveSection("me");
-    else if (pathname.includes("extra")) setActiveSection("extra");
-    // Tilføj evt. flere regler hvis du har flere sider
-  }, [pathname]);
-
-  // Find den aktuelle farve-stil
-  const sectionColor = sectionColors[activeSection] || sectionColors["me"];
+  // Kald fra contact-link
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    if (pathname !== "/") {
+      router.push("/#contact");
+    } else if (onContactClick) {
+      document
+        .getElementById("contact")
+        ?.scrollIntoView({ behavior: "smooth" });
+      onContactClick();
+    }
+  };
 
   return (
     <>
       {/* Mobile horizontal nav */}
       <nav
-        className={`flex lg:hidden justify-center gap-6 mb-6 text-sm tracking-widest font-sans font-medium ${sectionColor.base} ${className}`}
+        className={`flex lg:hidden fixed top-0 left-0 right-0 z-40 bg-white/80 justify-center gap-6 py-4  text-sm tracking-widest font-sans font-medium border-b border-pink-100 shadow-sm ${className}`}
+        {...props}
       >
         {navLinks.map((nav) => {
           const isActive = activeSection === nav.id;
-          const navColor = sectionColors[nav.id] || sectionColors["me"];
+          const navColor =
+            nav.id === "projects"
+              ? "text-orange-600"
+              : nav.id === "me"
+              ? "text-pink-600"
+              : nav.id === "extra"
+              ? "text-green-600"
+              : nav.id === "contact"
+              ? "text-blue-600"
+              : "text-pink-600";
+          const navActive =
+            nav.id === "projects"
+              ? "text-orange-800 underline underline-offset-4 font-bold"
+              : nav.id === "me"
+              ? "text-pink-800 underline underline-offset-4 font-bold"
+              : nav.id === "extra"
+              ? "text-green-800 underline underline-offset-4 font-bold"
+              : nav.id === "contact"
+              ? "text-blue-800 underline underline-offset-4 font-bold"
+              : "text-pink-800 underline underline-offset-4 font-bold";
+
           return (
             <a
               key={nav.id}
               href={nav.href}
-              className={`transition-transform duration-300 hover:scale-105 cursor-pointer
-                ${
-                  isActive
-                    ? navColor.active
-                    : navColor.base + " " + navColor.hover
-                }
-              `}
+              onClick={nav.id === "contact" ? handleContactClick : undefined}
+              className={`transition-all duration-200 hover:tracking-[0.1em] hover:scale-105 px-1 cursor-pointer ${
+                isActive ? navActive : navColor + " hover:underline"
+              }`}
             >
               {nav.label}
             </a>
@@ -67,23 +70,41 @@ export default function NavBar({ navLinks, className = "" }) {
       </nav>
       {/* Desktop vertical nav */}
       <aside
-        className={`hidden lg:block absolute left-4 top-1/2 transform -rotate-90 -translate-y-1/2 origin-top-left z-20 ${className}`}
+        className={`hidden lg:block absolute left-4 top-2/3 transform -rotate-90 -translate-y-1/2 origin-top-left z-20 ${className}`}
+        {...props}
       >
         <nav className="flex gap-12 text-med tracking-widest font-medium">
-          {navLinks.map((nav) => {
+          {[...navLinks].reverse().map((nav) => {
             const isActive = activeSection === nav.id;
-            const navColor = sectionColors[nav.id] || sectionColors["me"];
+            const navColor =
+              nav.id === "projects"
+                ? "text-orange-600"
+                : nav.id === "me"
+                ? "text-pink-600"
+                : nav.id === "extra"
+                ? "text-green-600"
+                : nav.id === "contact"
+                ? "text-blue-600"
+                : "text-pink-600";
+            const navActive =
+              nav.id === "projects"
+                ? "text-orange-800 underline underline-offset-4 font-bold"
+                : nav.id === "me"
+                ? "text-pink-800 underline underline-offset-4 font-bold"
+                : nav.id === "extra"
+                ? "text-green-800 underline underline-offset-4 font-bold"
+                : nav.id === "contact"
+                ? "text-blue-800 underline underline-offset-4 font-bold"
+                : "text-pink-800 underline underline-offset-4 font-bold";
+
             return (
               <a
                 key={nav.id}
                 href={nav.href}
-                className={`transition-all duration-300 hover:tracking-[0.2em] hover:scale-105 font-sans cursor-pointer
-                  ${
-                    isActive
-                      ? navColor.active
-                      : navColor.base + " " + navColor.hover
-                  }
-                `}
+                onClick={nav.id === "contact" ? handleContactClick : undefined}
+                className={`transition-all duration-300 hover:tracking-[0.2em] hover:scale-105 font-sans cursor-pointer ${
+                  isActive ? navActive : navColor + " hover:underline"
+                }`}
               >
                 {nav.label}
               </a>

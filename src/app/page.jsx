@@ -1,13 +1,22 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import VideoHero from "./components/VideoHero";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
+import { useLang } from "./layout"; // Importer sprogkontextet
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("");
-  const [lang, setLang] = useState("en"); // <-- Tilføj sprog state
+  const [lang, setLang] = useState("en");
+  const [showArrow, setShowArrow] = useState(false);
+  const contactRef = useRef(null);
+
+  // Funktion, der viser pilen
+  function handleContactClick() {
+    setShowArrow(true);
+    setTimeout(() => setShowArrow(false), 2000);
+  }
 
   // Scroll tracking for active nav
   useEffect(() => {
@@ -36,14 +45,46 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [activeSection]);
 
+  // Observer: Vis pilen når kontaktsektionen er synlig
+  useEffect(() => {
+    if (!contactRef.current) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowArrow(true);
+          setTimeout(() => setShowArrow(false), 2000);
+        }
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(contactRef.current);
+    return () => observer.disconnect();
+  }, []);
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hash === "#contact") {
+      setTimeout(() => {
+        document
+          .getElementById("contact")
+          ?.scrollIntoView({ behavior: "smooth" });
+        setShowArrow(true);
+        setTimeout(() => setShowArrow(false), 2000);
+      }, 200);
+    }
+  }, []);
+
   const navLinks = [
-    { id: "extra", label: lang === "en" ? "EXTRA" : "EKSTRA", href: "/#extra" },
     {
       id: "projects",
-      label: lang === "en" ? "PROJECTS" : "PROJEKTER",
+      label: lang === "dk" ? "PROJEKTER" : "PROJECTS",
       href: "/projects",
     },
-    { id: "me", label: lang === "en" ? "ME" : "MIG", href: "/" },
+    { id: "me", label: lang === "dk" ? "MIG" : "ME", href: "/" },
+    { id: "extra", label: lang === "dk" ? "EXTRA" : "EXTRA", href: "/#extra" },
+    {
+      id: "contact",
+      label: lang === "dk" ? "KONTAKT" : "CONTACT",
+      href: "/#contact",
+    },
   ];
 
   // Tekster til DK/EN
@@ -109,11 +150,10 @@ export default function Home() {
   };
 
   const t = texts[lang];
-
   return (
     <main className="min-h-screen flex flex-col items-center bg-white text-pink-600 font-serif bg-[url('/imgs/paper-bg.png')] bg-repeat p-6 lg:p-12 scroll-smooth">
       {/* Sprogtoggle øverst til højre */}
-      <div className="fixed top-4 right-6 z-50 flex gap-2 items-center">
+      <div className="fixed mt-12 lg:mt-2 top-4 right-6 z-50 flex gap-2 items-center">
         <button
           className={`px-2 py-1 rounded font-bold ${
             lang === "dk" ? "bg-pink-200" : "hover:bg-pink-100"
@@ -132,7 +172,13 @@ export default function Home() {
         </button>
       </div>
 
-      <NavBar navLinks={navLinks} activeSection={activeSection} color="pink" />
+      {/* NavBar */}
+      <NavBar
+        navLinks={navLinks}
+        activeSection={activeSection}
+        onContactClick={handleContactClick}
+        color="pink"
+      />
 
       <div className="w-full max-w-6xl mx-auto">
         <div className="mb-8">
@@ -143,16 +189,6 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* DESKTOP VERTICAL NAV */}
-          <aside className="hidden lg:block absolute left-4 top-1/2 transform -rotate-90 -translate-y-1/2 origin-top-left z-20">
-            <NavBar
-              navLinks={navLinks}
-              activeSection={activeSection}
-              color="pink"
-              vertical
-            />
-          </aside>
-
           {/* LEFT COLUMN */}
           <section className="flex-1 max-w-3xl" id="me">
             <div className="p-0 flex flex-col gap-4">
@@ -221,7 +257,11 @@ export default function Home() {
           </section>
         </div>
       </div>
-      <Footer />
+
+      {/* Footer med ref (for observer) */}
+      <div ref={contactRef}>
+        <Footer id="contact" showArrow={showArrow} />
+      </div>
     </main>
   );
 }
