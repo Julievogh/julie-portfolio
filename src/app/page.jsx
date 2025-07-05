@@ -4,19 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import VideoHero from "./components/VideoHero";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
-import { useLang } from "./layout"; // Importer sprogkontextet
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("");
   const [lang, setLang] = useState("en");
   const [showArrow, setShowArrow] = useState(false);
   const contactRef = useRef(null);
-
-  // Funktion, der viser pilen
-  function handleContactClick() {
-    setShowArrow(true);
-    setTimeout(() => setShowArrow(false), 2000);
-  }
 
   // Scroll tracking for active nav
   useEffect(() => {
@@ -92,16 +85,16 @@ export default function Home() {
     en: {
       name: "Julie Vogh",
       sub: "(Say it like Vogue)",
-      intro1: `Hi, I’m Julie – a curious frontend creative who builds smooth, user-friendly interfaces with equal parts logic and whimsy. I care about the details, the people, and making the web a little more delightful.`,
-      intro2: `I am looking for my next challenge - if you need a frontend developer or a UI/UX designer, or general marketing/customer-person, I would love to hear from you. I am based in Copenhagen, and part-time in Rome. I am interested in remote or hybrid work, and I am open to both freelance and full-time opportunities.`,
+      intro1: `Hi, I’m <strong>Julie</strong> — a <strong>curious frontend creative</strong> who builds smooth, memorable user experiences, mixing <strong>logic</strong> with a dash of <strong>whimsy</strong>. I obsess over the <strong>details</strong>, care deeply about <strong>people</strong>, and believe the web should feel a little more <strong>delightful</strong>.`,
+      intro2: `<strong>Ready for a new challenge?</strong> If you’re searching for a <strong>frontend developer</strong>, <strong>UI/UX designer</strong>, or a creative <strong>marketing/customer wizard</strong>, I’d love to talk. <strong>Based in Copenhagen</strong> (sometimes Rome!), open to <strong>remote or hybrid</strong>, freelance or full-time. Let’s build something remarkable together.`,
       location: "Copenhagen / Rome",
       contact: "Frontend Designer",
       remote: "Remote or on-site",
       oneWoman: "One-woman show ✨",
       projects: "Projects",
       projectsIntro:
-        "A mix of client work, personal ideas and fun explorations. I believe creativity is a muscle – and I love flexing it.",
-      skills: "Here are my skills",
+        "A mix of <strong>client work</strong>, <strong>personal passion</strong> and <strong>playful experiments</strong>. Creativity is a muscle — and I flex mine often.",
+      skills: "My superpowers",
       skillsList: [
         "Figma",
         "HTML / CSS / Tailwind / JS",
@@ -115,22 +108,22 @@ export default function Home() {
         "Content creation",
         "Empathy & Curiosity",
         "Problem-solving with Creativity",
-        "Working until it works",
+        "I work until it works.",
       ],
     },
     dk: {
       name: "Julie Vogh",
       sub: "(Udtales som Fogh på dansk)",
-      intro1: `Hej, jeg er Julie – en nysgerrig frontend-udvikler, der bygger lækre, brugervenlige interfaces med lige dele logik og leg. Jeg elsker detaljen, mennesket og at gøre nettet lidt mere hyggeligt.`,
-      intro2: `Jeg søger nye udfordringer – har du brug for en frontend-udvikler, UI/UX-designer eller marketing/kundeservice-person, vil jeg meget gerne høre fra dig. Jeg er baseret i København og delvist i Rom. Jeg er interesseret i remote eller hybrid-arbejde, både freelance og fast.`,
+      intro1: `Hej, jeg er <strong>Julie</strong> — en <strong>nysgerrig frontend-udvikler</strong>, der bygger <strong>lækre</strong>, brugervenlige interfaces med både <strong>logik</strong> og <strong>leg</strong>. Jeg elsker <strong>detaljer</strong>, mennesker – og at gøre nettet lidt mere <strong>hyggeligt</strong>.`,
+      intro2: `<strong>Klar til nye eventyr?</strong> Hvis du mangler en <strong>frontend-udvikler</strong>, <strong>UI/UX-designer</strong> eller en kreativ <strong>marketing/kundeservice-helt</strong>, så kontakt mig. <strong>Baseret i København</strong> (delvist Rom), åben for <strong>remote eller hybrid</strong>, freelance eller fast. Skal vi skabe noget fedt sammen?`,
       location: "København / Rom",
       contact: "Frontend-designer",
       remote: "Remote eller fysisk",
       oneWoman: "Én-kvinde-hær ✨",
       projects: "Projekter",
       projectsIntro:
-        "En blanding af kundeprojekter, egne idéer og legende eksperimenter. Kreativitet er en muskel – og jeg elsker at bruge den.",
-      skills: "Mine kompetencer",
+        "En blanding af <strong>kundeprojekter</strong>, <strong>egne idéer</strong> og <strong>lege-eksperimenter</strong>. Kreativitet er en muskel – og jeg bruger den hver dag.",
+      skills: "Mine superkræfter",
       skillsList: [
         "Figma",
         "HTML / CSS / Tailwind / JS",
@@ -144,14 +137,25 @@ export default function Home() {
         "Content creation",
         "Empati & nysgerrighed",
         "Kreativ problemløsning",
-        "Giver ikke op før det virker",
+        "Giver aldrig op før det virker.",
       ],
     },
   };
 
   const t = texts[lang];
+
   return (
     <main className="min-h-screen flex flex-col items-center bg-white text-pink-600 font-serif bg-[url('/imgs/paper-bg.png')] bg-repeat p-6 lg:p-12 scroll-smooth">
+      {/* Pink <strong> kun på beskrivelser */}
+      <style>
+        {`
+          .desc-strong strong {
+            color: #db2777;
+            font-weight: bold;
+          }
+        `}
+      </style>
+
       {/* Sprogtoggle øverst til højre */}
       <div className="fixed mt-12 lg:mt-2 top-4 right-6 z-50 flex gap-2 items-center">
         <button
@@ -176,48 +180,53 @@ export default function Home() {
       <NavBar
         navLinks={navLinks}
         activeSection={activeSection}
-        onContactClick={handleContactClick}
+        onContactClick={() => {
+          setShowArrow(true);
+          setTimeout(() => setShowArrow(false), 2000);
+        }}
         color="pink"
       />
 
       <div className="w-full max-w-6xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-left">{t.name}</h1>
-          <h2 className="text-2xl font-semibold text-pink-500 text-left">
+        <div className="mb-10">
+          <h1 className="text-4xl lg:text-5xl font-extrabold text-left leading-tight tracking-tight">
+            {t.name}
+          </h1>
+          <h2 className="text-xl lg:text-2xl font-medium text-pink-500 text-left mt-1 italic tracking-wide">
             {t.sub}
           </h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex flex-col lg:flex-row gap-10">
           {/* LEFT COLUMN */}
           <section className="flex-1 max-w-3xl" id="me">
             <div className="p-0 flex flex-col gap-4">
-              <div className="bg-gray-200 aspect-video w-full overflow-hidden rounded-lg">
+              <div className="bg-gray-200 aspect-video w-full overflow-hidden rounded-2xl shadow-md">
                 <VideoHero
                   videoSrc="/imgs/profile-video.mp4"
                   poster="/imgs/julie1.jpeg"
                   alt="Julie Vogh"
                 />
               </div>
-              <div className="bg-white/70 p-4 rounded shadow text-sm font-sans">
-                <p>{t.intro1}</p>
+              <div className="bg-white/80 p-6 rounded-xl shadow text-base font-sans desc-strong">
+                <p dangerouslySetInnerHTML={{ __html: t.intro1 }} />
               </div>
-              <div className="bg-white/70 p-4 rounded shadow text-sm font-sans">
-                <p>{t.intro2}</p>
+              <div className="bg-white/80 p-6 rounded-xl shadow text-base font-sans desc-strong">
+                <p dangerouslySetInnerHTML={{ __html: t.intro2 }} />
               </div>
             </div>
           </section>
 
           {/* RIGHT COLUMN */}
           <section
-            className="flex-1 text-sm pl-2 space-y-4 max-w-sm mt-0 lg:mt-0"
+            className="flex-1 text-base pl-2 space-y-6 max-w-sm mt-0 lg:mt-0"
             id="projects"
           >
             <div>
-              <h3>
-                <strong>Julie Sølva Eschricht Vogh</strong>
+              <h3 className="text-lg lg:text-2xl font-bold text-pink-900 mb-1">
+                Julie Sølva Eschricht Vogh
               </h3>
-              <p>{t.location}</p>
+              <p className="mb-0">{t.location}</p>
               <p>
                 <a
                   href="#"
@@ -235,19 +244,26 @@ export default function Home() {
                   </span>
                 </a>
               </p>
-              <p>+45 23 84 80 88</p>
-              <p>{t.contact}</p>
-              <p>{t.remote}</p>
-              <p className="italic">{t.oneWoman}</p>
+              <p className="mb-0">+45 23 84 80 88</p>
+              <p className="mb-0">{t.contact}</p>
+              <p className="mb-0">{t.remote}</p>
+              <p className="italic text-pink-400">{t.oneWoman}</p>
             </div>
 
             <div>
-              <h2 className="font-semibold mt-6">{t.projects}</h2>
-              <p>{t.projectsIntro}</p>
+              <h2 className="text-lg lg:text-2xl font-bold text-pink-800 mt-8 mb-1">
+                {t.projects}
+              </h2>
+              <p
+                className="desc-strong"
+                dangerouslySetInnerHTML={{ __html: t.projectsIntro }}
+              />
             </div>
 
             <div>
-              <h2 className="font-semibold mt-6">{t.skills}</h2>
+              <h2 className="text-lg lg:text-2xl font-bold text-pink-800 mt-8 mb-1">
+                {t.skills}
+              </h2>
               <ul className="list-disc pl-5 space-y-1">
                 {t.skillsList.map((skill, i) => (
                   <li key={i}>{skill}</li>

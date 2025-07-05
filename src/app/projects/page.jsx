@@ -35,8 +35,6 @@ const projects = [
     },
     img: "/imgs/hvidovre-if.png",
     tools: ["WordPress", "Elementor", "UI/UX", "Support"],
-    link: "https://hvidovreif.dk",
-    linkLabel: "Website",
   },
   {
     title: { dk: "Cozy Social Club", en: "Cozy Social Club" },
@@ -46,7 +44,7 @@ const projects = [
     },
     img: "/imgs/cozysocialclub.png",
     tools: ["Next.js", "Sanity CMS", "Figma", "Branding", "Trello"],
-    link: "https://cozysocialclub.dk",
+    link: "https://c-s-c.vercel.app/",
     linkLabel: "Website",
   },
   {
@@ -71,6 +69,7 @@ const projects = [
     link: "https://leisnerogsoen.dk",
     linkLabel: "Website",
   },
+
   {
     title: { dk: "Bridge", en: "Bridge" },
     desc: {
@@ -78,9 +77,9 @@ const projects = [
       en: "Conceptual website and graphic identity for an international NGO project. Focus on building bridges between cultures, communication, and visual storytelling.",
     },
     img: "/imgs/bridge-1.png",
-    tools: ["Figma", "Branding", "UI/UX", "Webflow"],
-    link: "https://www.figma.com/file/bridge",
-    linkLabel: "Figma",
+    tools: ["Figma", "Branding", "UI/UX", "Webflow", "Redesign"],
+    link: "https://bridge.beckit.dk",
+    linkLabel: "Website",
   },
   {
     title: { dk: "Sofus & Solveig", en: "Sofus & Solveig" },
@@ -90,7 +89,7 @@ const projects = [
     },
     img: "/imgs/sofussolveig.png",
     tools: ["WooCommerce", "WordPress", "Figma", "Produktfoto"],
-    link: "https://sofussolveig.dk",
+    link: "https://sofussolveig.beckit.dk",
     linkLabel: "Website",
   },
   {
@@ -101,8 +100,6 @@ const projects = [
     },
     img: "/imgs/deb1.png",
     tools: ["WordPress", "Elementor", "Figma", "UI/UX"],
-    link: "https://deb.dk",
-    linkLabel: "Website",
   },
   {
     title: { dk: "Foo Festival", en: "Foo Festival" },
@@ -115,6 +112,88 @@ const projects = [
     link: "https://www.figma.com/file/foofestival",
     linkLabel: "Figma",
   },
+
+  {
+    title: { dk: "CA A-Kasse", en: "CA A-Kasse" },
+    desc: {
+      dk: "Hjemmeside og branding for fagforening. Fokus på brugervenlighed, information og medlemsservice. Fokus på at skabe nye idéer til landingsside og SoMe-indhold.",
+      en: "Website and branding for a trade union. Focus on user-friendliness, information, and member service. Focused on creating new ideas for Landing page and SoMe content.",
+    },
+    img: "/imgs/CA1.png",
+    tools: ["SoMe", "Video", "HTML/CSS", "Figma", "Marketing"],
+    link: "https://youtu.be/EciZT1wr0aQ?si=WKiVtHm7_3MEOE1w",
+    linkLabel: "Video",
+  },
+
+  {
+    title: { dk: "Logos", en: "Logos" },
+    desc: {
+      dk: "Forskellige logo-designs – fra klassisk til legende.",
+      en: "Various logo designs – from classic to playful.",
+    },
+    img: "/imgs/project-vildmad.jpg",
+    gallery: [
+      {
+        img: "/imgs/truee.svg",
+        title: { dk: "Truee Service", en: "Truee Service" },
+        desc: {
+          dk: "Redesign af logo for et rengøringsfirma – moderne, farverigt og let genkendeligt.",
+          en: "Logo redesign for a cleaning company – modern, colorful, and easily recognizable.",
+        },
+      },
+      {
+        img: "/imgs/logo-vildmad.svg",
+        title: { dk: "Vild Mad - for børn!", en: "Vild Mad - for børn!" },
+        desc: {
+          dk: "Redesign af logo for Vild Mad for børn, med legende, børnevenlige elementer.",
+          en: "Logo redesign for Vild Mad for Børn, with playful, child-friendly elements.",
+        },
+      },
+      {
+        img: "/imgs/all-logos-csc.png",
+        title: { dk: "Cozy Social Club", en: "Cozy Social Club" },
+        desc: {
+          dk: "Konceptlogo for Cozy Social Club, inspireret af kundens ønske om en rå, 'Care Bear'-agtig bamse.",
+          en: "Concept logo for Cozy Social Club, inspired by the client's wish for a raw, 'Care Bear'-like bear.",
+        },
+      },
+
+      {
+        img: "/imgs/bridge-newlogo.svg",
+        title: { dk: "Bridge", en: "Bridge" },
+        desc: {
+          dk: "Bridge redesign - En fornyelse af Bridge-logoet med fokus på enkelhed og klarhed.",
+          en: "Bridge redesign - A refresh of the Bridge logo with a focus on simplicity and clarity.",
+        },
+      },
+
+      {
+        img: "/imgs/logo-stempel-stor.svg",
+        title: { dk: "CleanSpace Logo 2", en: "CleanSpace Logo 2" },
+        desc: {
+          dk: "Main version af CleanSpace-logoet – stærk kontrast og seriøst udtryk, der skiller sig ud.",
+          en: "Main version of the CleanSpace logo – strong contrast and a serious look that stands out.",
+        },
+      },
+      {
+        img: "/imgs/logo-all-cleanspace.jpg",
+        title: { dk: "CleanSpace Logo 1", en: "CleanSpace Logo 1" },
+        desc: {
+          dk: "Alternative variationer – en moderne og digital tilgang til rengøringsbranchen.",
+          en: "Alternative variations – a modern, digital approach to the cleaning industry.",
+        },
+      },
+      {
+        img: "/imgs/Cleanspace-ideer.png",
+        title: { dk: "CleanSpace Logo 1", en: "CleanSpace Logo 1" },
+        desc: {
+          dk: "Alternative ideer til CleanSpace-logoet.",
+          en: "Alternative ideas for the CleanSpace logo.",
+        },
+      },
+    ],
+  },
+
   {
     title: { dk: "Illustrations", en: "Illustrations" },
     desc: {
@@ -139,6 +218,7 @@ const projects = [
           en: "Earth illustration for a sustainability theme.",
         },
       },
+
       {
         img: "/imgs/illustrations/lifeguard.png",
         title: { dk: "Lifeguard", en: "Lifeguard" },
@@ -217,6 +297,14 @@ const projects = [
         desc: {
           dk: "Trio af hajer – designet til sjov effekt.",
           en: "Trio of sharks – designed for fun effect.",
+        },
+      },
+      {
+        img: "/imgs/illustrations/house.webp",
+        title: { dk: "House", en: "House" },
+        desc: {
+          dk: "Hus-illustration til et hyggeligt hjem-tema for Sofus & Solveig.",
+          en: "House illustration for a cozy home theme for Sofus & Solveig.",
         },
       },
       {
