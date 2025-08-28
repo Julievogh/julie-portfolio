@@ -53,21 +53,36 @@ const projects = [
   {
     title: { dk: "Hvidovre I/F", en: "Hvidovre I/F" },
     desc: {
-      dk: "Website for dansk fodboldklub. Frisk design, klubidentitet, nyhedsmodul og integration med kampkalender. Fokus på mobilvenlighed og lokal forankring.",
-      en: "Website for Danish football club. Fresh design, club identity, news module, and match calendar integration. Focus on mobile-friendliness and local engagement.",
+      dk: "Redesign af Hvidovre I/F’s hjemmeside med fokus på tilmelding, gallerier, information og præsentation af klubben. Arbejdet inkluderede UI/UX, Figma, videoredigering, research, testing og frontend-udvikling i HTML/CSS, samt teamledelse og modernisering af sitet.",
+      en: "Redesign of Hvidovre I/F website focusing on registration, galleries, information, and showcasing the club. Work included UI/UX, Figma, video editing, research, testing, and frontend development in HTML/CSS, as well as team leadership and site modernization.",
     },
     img: "/imgs/hvidovre-if.png",
-    tools: ["WordPress", "Elementor", "UI/UX", "Support"],
+    tools: [
+      "Figma",
+      "UI/UX",
+      "HTML/CSS",
+      "Video Editing",
+      "Research",
+      "Testing",
+    ],
+    link: "#",
+    linkLabel: "Website",
   },
-
   {
     title: { dk: "Copenhagen Light Festival", en: "Copenhagen Light Festival" },
     desc: {
-      dk: "Visuelt website og branding til lysfestival – præsentation af events, billeder og interaktive kort. Designet til at skabe stemning og engagement.",
-      en: "Visual website and branding for a light festival – presentation of events, images, and interactive maps. Designed to create atmosphere and engagement.",
+      dk: "Visuelt website og branding til lysfestival – præsentation af events, billeder og interaktiv info om udstillinger. Designet til at skabe stemning og engagement.",
+      en: "Visual website and branding for a light festival – presentation of events, images, and interactive info om udstillinger. Designed to create atmosphere and engagement.",
     },
     img: "/imgs/cphlightfest.png",
-    tools: ["Figma", "Adobe XD", "Branding", "UI/UX"],
+    tools: [
+      "Figma",
+      "Adobe XD",
+      "HTML/CSS",
+      "Video Editing",
+      "Branding",
+      "UI/UX",
+    ],
     link: "https://www.figma.com/file/lightfest",
     linkLabel: "Figma",
   },
@@ -108,20 +123,28 @@ const projects = [
   {
     title: { dk: "Dansk Erhvervs Beklædning", en: "Dansk Erhvervs Beklædning" },
     desc: {
-      dk: "Branding og hjemmeside for B2B-virksomhed indenfor arbejdstøj. Klar, professionel profil, produktside og kontaktflow optimeret til erhvervskunder.",
-      en: "Branding and website for a B2B workwear company. Clear, professional profile, product page, and contact flow optimized for business customers.",
+      dk: "Branding og redesign af hjemmeside for B2B-virksomhed indenfor arbejdstøj. Fokus på klar og professionel profil, optimerede produktsider og effektivt kontaktflow til erhvervskunder.",
+      en: "Branding and redesign of the website for a B2B workwear company. Focus on clear and professional profile, optimized product pages, and efficient contact flow for business customers.",
     },
     img: "/imgs/deb1.png",
-    tools: ["WordPress", "Elementor", "Figma", "UI/UX"],
+    tools: ["Figma", "UI/UX"],
   },
+
   {
     title: { dk: "Foo Festival", en: "Foo Festival" },
     desc: {
-      dk: "Visuelt koncept og website til musik- og madfestival – design, program, billetsalg og SoMe. Fokus på levende farver, illustration og brugerrejse.",
-      en: "Visual concept and website for music & food festival – design, program, ticket sales, and SoMe. Focus on lively colors, illustration, and user journey.",
+      dk: "Visuelt koncept og website til musik festival – design, program, billetsalg og SoMe. Fokus på levende farver, illustration og brugerrejse.",
+      en: "Visual concept and website for music festival – design, program, ticket sales, and SoMe. Focus on lively colors, illustration, and user journey.",
     },
     img: "/imgs/foofestival.png",
-    tools: ["Next.js", "Figma", "Simple DB", "Branding", "Illustration"],
+    tools: [
+      "Next.js",
+      "Figma",
+      "Simple DB",
+      "Branding",
+      "Illustration",
+      "Customer Journey",
+    ],
     link: "https://www.figma.com/file/foofestival",
     linkLabel: "Figma",
   },
