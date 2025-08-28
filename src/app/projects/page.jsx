@@ -6,13 +6,24 @@ import NavBar from "../components/NavBar";
 
 const projects = [
   {
+    title: { dk: "Cozy Social Club", en: "Cozy Social Club" },
+    desc: {
+      dk: "Koncept, branding og hjemmeside til pop-up dining oplevelse i København. Udviklet i Next.js med særlig vægt på fællesskab, hygge og madoplevelser.",
+      en: "Concept, branding, and website for a pop-up dining experience in Copenhagen. Built in Next.js with focus on community, coziness, and food experiences.",
+    },
+    img: "/imgs/cozysocialclub.png",
+    tools: ["Next.js", "Sanity CMS", "Figma", "Branding", "Trello"],
+    link: "https://c-s-c-v2.vercel.app/",
+    linkLabel: "Website",
+  },
+  {
     title: { dk: "CleanSpace", en: "CleanSpace" },
     desc: {
-      dk: "Komplet SaaS-platform og dashboard til rengøringsbranchen. UI/UX-design, branding og responsivt website udviklet fra bunden – fokus på moderne look og brugervenlighed.",
-      en: "Complete SaaS platform and dashboard for the cleaning industry. UI/UX design, branding, and responsive website developed from scratch – focus on modern look and user-friendliness.",
+      dk: "Komplet platform til firma i rengøringsbranchen. Jeg har redesignet UI/UX i Figma og udvikler nu siden i React/Next.js med fokus på moderne design, brugervenlighed og at skabe værdi for kunderne. Den tidligere version var bygget i WordPress.",
+      en: "Complete platform for a business in the cleaning industry. I redesigned the UI/UX in Figma and am now developing the site in React/Next.js with a focus on modern design, user-friendliness, and delivering value to customers. The previous version was built in WordPress.",
     },
     img: "/imgs/cleanspace.png",
-    tools: ["Elementor Pro", "WordPress", "Figma", "Branding"],
+    tools: ["Figma", "React", "Next.js", "Branding"],
     link: "https://cleanspace.dk",
     linkLabel: "Website",
   },
@@ -36,17 +47,7 @@ const projects = [
     img: "/imgs/hvidovre-if.png",
     tools: ["WordPress", "Elementor", "UI/UX", "Support"],
   },
-  {
-    title: { dk: "Cozy Social Club", en: "Cozy Social Club" },
-    desc: {
-      dk: "Koncept, branding og hjemmeside til pop-up dining oplevelse i København. Udviklet i Next.js med særlig vægt på fællesskab, hygge og madoplevelser.",
-      en: "Concept, branding, and website for a pop-up dining experience in Copenhagen. Built in Next.js with focus on community, coziness, and food experiences.",
-    },
-    img: "/imgs/cozysocialclub.png",
-    tools: ["Next.js", "Sanity CMS", "Figma", "Branding", "Trello"],
-    link: "https://c-s-c.vercel.app/",
-    linkLabel: "Website",
-  },
+
   {
     title: { dk: "Copenhagen Light Festival", en: "Copenhagen Light Festival" },
     desc: {
@@ -61,11 +62,11 @@ const projects = [
   {
     title: { dk: "Leisner & Søn", en: "Leisner & Søn" },
     desc: {
-      dk: "Digital profil og branding for håndværkervirksomhed. Udvikling af enkel, troværdig hjemmeside og grafisk identitet til både B2B og private kunder.",
-      en: "Digital profile and branding for a craftsman company. Simple, trustworthy website and graphic identity for both B2B and private customers.",
+      dk: "Redesign af familievirksomhedens hjemmeside med fokus på kundens specifikke ønsker, simplificering af brugeroplevelsen og produktion af infovideoer til hjemmesiden.",
+      en: "Redesign of the family business website with focus on the client's specific requests, simplifying the user experience, and producing informational videos for the site.",
     },
     img: "/imgs/leisner.png",
-    tools: ["WordPress", "Figma", "UI/UX", "Support"],
+    tools: ["WordPress", "Figma", "UI/UX", "Video Production"],
     link: "https://leisnerogsoen.dk",
     linkLabel: "Website",
   },
@@ -73,11 +74,11 @@ const projects = [
   {
     title: { dk: "Bridge", en: "Bridge" },
     desc: {
-      dk: "Konceptuel website og grafisk identitet til internationalt NGO-projekt. Fokus på brobygning mellem kulturer, formidling og visuel storytelling.",
-      en: "Conceptual website and graphic identity for an international NGO project. Focus on building bridges between cultures, communication, and visual storytelling.",
+      dk: "Redesign af hjemmesiderne bridge.dk og bridgefestival.dk med fokus på fornyelse, bedre overblik, engagement og opbygning af en overskuelig mega-menu. Forsiderne blev udviklet i WordPress og leveret til kunden med fokus på visuel formidling og brugeroplevelse.",
+      en: "Redesign of the websites bridge.dk and bridgefestival.dk, focusing on renewal, improved clarity, user engagement, and the creation of an intuitive mega-menu. The homepages were developed in WordPress and delivered to the client with a focus on visual communication and user experience.",
     },
     img: "/imgs/bridge-1.png",
-    tools: ["Figma", "Branding", "UI/UX", "Webflow", "Redesign"],
+    tools: ["Figma", "UI/UX", "Branding", "WordPress", "Redesign"],
     link: "https://bridge.beckit.dk",
     linkLabel: "Website",
   },
