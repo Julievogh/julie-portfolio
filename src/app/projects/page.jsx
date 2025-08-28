@@ -12,7 +12,7 @@ const projects = [
       en: "Concept, branding, and website for a pop-up dining experience in Copenhagen. Built in Next.js with focus on community, coziness, and food experiences.",
     },
     img: "/imgs/cozysocialclub.png",
-    tools: ["Next.js", "Sanity CMS", "Figma", "Branding", "Trello"],
+    tools: ["Next.js", "Strapi", "Render", "Figma", "Branding", "Trello"],
     link: "https://c-s-c-v2.vercel.app/",
     linkLabel: "Website",
   },
@@ -27,6 +27,18 @@ const projects = [
     link: "https://cleanspace.dk",
     linkLabel: "Website",
   },
+
+  {
+    title: { dk: "Louise Dubiel", en: "Louise Dubiel" },
+    desc: {
+      dk: "Udvikling af visuel identitet og hjemmeside for musikeren Louise Dubiel. Fokus på UI/UX, brugerrejse, research og redesign samt opbygning af et intuitivt bookingflow, der fremhæver hendes historie og musik.",
+      en: "Development of visual identity and website for musician Louise Dubiel. Focus on UI/UX, customer journey, research, and redesign, as well as creating an intuitive booking flow that highlights her story and music.",
+    },
+    img: "/imgs/Louise.png",
+    tools: ["Figma", "UI/UX", "Customer Journey", "Research", "WordPress"],
+    linkLabel: "Website",
+  },
+
   {
     title: { dk: "Vildmad", en: "Vildmad" },
     desc: {
