@@ -1,17 +1,12 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
 
-export default function NavBar({
-  navLinks,
-  activeSection = "",
-  onContactClick,
-  className = "",
-  ...props
-}) {
+export default function NavBar({ navLinks, activeSection = "", onContactClick, className = "", ...props }) {
   const pathname = usePathname();
   const router = useRouter();
 
-  // Kald fra contact-link
+  // Kald fra contact-link (nu ikke i brug, men beholdt udkommenteret til senere)
+  /*
   const handleContactClick = (e) => {
     e.preventDefault();
     if (pathname !== "/") {
@@ -23,6 +18,7 @@ export default function NavBar({
       onContactClick();
     }
   };
+  */
 
   return (
     <>
@@ -32,33 +28,23 @@ export default function NavBar({
         {...props}
       >
         {navLinks.map((nav) => {
+          // Skip "extra" og "contact"
+          if (nav.id === "extra" || nav.id === "contact") return null;
+
           const isActive = activeSection === nav.id;
           const navColor =
-            nav.id === "projects"
-              ? "text-orange-600"
-              : nav.id === "me"
-              ? "text-pink-600"
-              : nav.id === "extra"
-              ? "text-green-600"
-              : nav.id === "contact"
-              ? "text-blue-600"
-              : "text-pink-600";
+            nav.id === "projects" ? "text-orange-600" : nav.id === "me" ? "text-pink-600" : "text-pink-600"; // fallback
           const navActive =
             nav.id === "projects"
               ? "text-orange-800 underline underline-offset-4 font-bold"
               : nav.id === "me"
               ? "text-pink-800 underline underline-offset-4 font-bold"
-              : nav.id === "extra"
-              ? "text-green-800 underline underline-offset-4 font-bold"
-              : nav.id === "contact"
-              ? "text-blue-800 underline underline-offset-4 font-bold"
               : "text-pink-800 underline underline-offset-4 font-bold";
 
           return (
             <a
               key={nav.id}
               href={nav.href}
-              onClick={nav.id === "contact" ? handleContactClick : undefined}
               className={`transition-all duration-200 hover:tracking-[0.1em] hover:scale-105 px-1 cursor-pointer ${
                 isActive ? navActive : navColor + " hover:underline"
               }`}
@@ -68,40 +54,31 @@ export default function NavBar({
           );
         })}
       </nav>
+
       {/* Desktop vertical nav */}
       <aside
-        className={`hidden lg:block absolute left-4 top-2/3 transform -rotate-90 -translate-y-1/2 origin-top-left z-20 ${className}`}
+        className={`hidden lg:block absolute left-4 top-3/6 transform -rotate-90 -translate-y-1/2 origin-top-left z-20 ${className}`}
         {...props}
       >
         <nav className="flex gap-12 text-med tracking-widest font-medium">
           {[...navLinks].reverse().map((nav) => {
+            // Skip "extra" og "contact"
+            if (nav.id === "extra" || nav.id === "contact") return null;
+
             const isActive = activeSection === nav.id;
             const navColor =
-              nav.id === "projects"
-                ? "text-orange-600"
-                : nav.id === "me"
-                ? "text-pink-600"
-                : nav.id === "extra"
-                ? "text-green-600"
-                : nav.id === "contact"
-                ? "text-blue-600"
-                : "text-pink-600";
+              nav.id === "projects" ? "text-orange-600" : nav.id === "me" ? "text-pink-600" : "text-pink-600";
             const navActive =
               nav.id === "projects"
                 ? "text-orange-800 underline underline-offset-4 font-bold"
                 : nav.id === "me"
                 ? "text-pink-800 underline underline-offset-4 font-bold"
-                : nav.id === "extra"
-                ? "text-green-800 underline underline-offset-4 font-bold"
-                : nav.id === "contact"
-                ? "text-blue-800 underline underline-offset-4 font-bold"
                 : "text-pink-800 underline underline-offset-4 font-bold";
 
             return (
               <a
                 key={nav.id}
                 href={nav.href}
-                onClick={nav.id === "contact" ? handleContactClick : undefined}
                 className={`transition-all duration-300 hover:tracking-[0.2em] hover:scale-105 font-sans cursor-pointer ${
                   isActive ? navActive : navColor + " hover:underline"
                 }`}

@@ -26,9 +26,7 @@ export default function Home() {
           offset: document.getElementById("extra")?.offsetTop || 0,
         },
       ];
-      const current = sections
-        .reverse()
-        .find((section) => scrollY + 100 >= section.offset);
+      const current = sections.reverse().find((section) => scrollY + 100 >= section.offset);
       if (current && current.id !== activeSection) {
         setActiveSection(current.id);
       }
@@ -56,9 +54,7 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== "undefined" && window.location.hash === "#contact") {
       setTimeout(() => {
-        document
-          .getElementById("contact")
-          ?.scrollIntoView({ behavior: "smooth" });
+        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
         setShowArrow(true);
         setTimeout(() => setShowArrow(false), 2000);
       }, 200);
@@ -145,7 +141,7 @@ export default function Home() {
   const t = texts[lang];
 
   return (
-    <main className="min-h-screen flex flex-col items-center bg-white text-pink-600 font-serif bg-[url('/imgs/paper-bg.png')] bg-repeat p-6 lg:p-12 scroll-smooth">
+    <main className="min-h-screen flex flex-col items-center bg-white text-pink-600 font-serif  p-6 lg:p-12 scroll-smooth">
       {/* Pink <strong> kun på beskrivelser */}
       <style>
         {`
@@ -189,12 +185,8 @@ export default function Home() {
 
       <div className="w-full max-w-6xl mx-auto">
         <div className="mb-10">
-          <h1 className="text-4xl lg:text-5xl font-extrabold text-left leading-tight tracking-tight">
-            {t.name}
-          </h1>
-          <h2 className="text-xl lg:text-2xl font-medium text-pink-500 text-left mt-1 italic tracking-wide">
-            {t.sub}
-          </h2>
+          <h1 className="text-4xl lg:text-5xl font-extrabold text-left leading-tight tracking-tight">{t.name}</h1>
+          <h2 className="text-xl lg:text-2xl font-medium text-pink-500 text-left mt-1 italic tracking-wide">{t.sub}</h2>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-10">
@@ -202,11 +194,7 @@ export default function Home() {
           <section className="flex-1 max-w-3xl" id="me">
             <div className="p-0 flex flex-col gap-4">
               <div className="bg-gray-200 aspect-video w-full overflow-hidden rounded-2xl shadow-md">
-                <VideoHero
-                  videoSrc="/imgs/profile-video.mp4"
-                  poster="/imgs/julie1.jpeg"
-                  alt="Julie Vogh"
-                />
+                <VideoHero videoSrc="/imgs/profile-video.mp4" poster="/imgs/julie1.jpeg" alt="Julie Vogh" />
               </div>
               <div className="bg-white/80 p-6 rounded-xl shadow text-base font-sans desc-strong">
                 <p dangerouslySetInnerHTML={{ __html: t.intro1 }} />
@@ -218,30 +206,21 @@ export default function Home() {
           </section>
 
           {/* RIGHT COLUMN */}
-          <section
-            className="flex-1 text-base pl-2 space-y-6 max-w-sm mt-0 lg:mt-0"
-            id="projects"
-          >
+          <section className="flex-1 text-base pl-2 space-y-6 max-w-sm mt-0 lg:mt-0" id="projects">
             <div>
-              <h3 className="text-lg lg:text-2xl font-bold text-pink-900 mb-1">
-                Julie Sølva Eschricht Vogh
-              </h3>
+              <h3 className="text-lg lg:text-2xl font-bold text-pink-900 mb-1">Julie Sølva Eschricht Vogh</h3>
               <p className="mb-0">{t.location}</p>
               <p>
                 <a
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    const email = ["julesvogh", "gmail", "com"]
-                      .join("@")
-                      .replace("gmail@", "gmail.");
+                    const email = ["julesvogh", "gmail", "com"].join("@").replace("gmail@", "gmail.");
                     window.location.href = `mailto:${email}?subject=Interested in your work&body=Hi Julie,%0A%0AI am interested in something...`;
                   }}
                   className="underline hover:text-pink-800"
                 >
-                  <span className="font-medium">
-                    julesvogh [at] gmail [dot] com
-                  </span>
+                  <span className="font-medium">julesvogh [at] gmail [dot] com</span>
                 </a>
               </p>
               <p className="mb-0">+45 23 84 80 88</p>
@@ -251,19 +230,12 @@ export default function Home() {
             </div>
 
             <div>
-              <h2 className="text-lg lg:text-2xl font-bold text-pink-800 mt-8 mb-1">
-                {t.projects}
-              </h2>
-              <p
-                className="desc-strong"
-                dangerouslySetInnerHTML={{ __html: t.projectsIntro }}
-              />
+              <h2 className="text-lg lg:text-2xl font-bold text-pink-800 mt-8 mb-1">{t.projects}</h2>
+              <p className="desc-strong" dangerouslySetInnerHTML={{ __html: t.projectsIntro }} />
             </div>
 
             <div>
-              <h2 className="text-lg lg:text-2xl font-bold text-pink-800 mt-8 mb-1">
-                {t.skills}
-              </h2>
+              <h2 className="text-lg lg:text-2xl font-bold text-pink-800 mt-8 mb-1">{t.skills}</h2>
               <ul className="list-disc pl-5 space-y-1">
                 {t.skillsList.map((skill, i) => (
                   <li key={i}>{skill}</li>
@@ -275,9 +247,11 @@ export default function Home() {
       </div>
 
       {/* Footer med ref (for observer) */}
+      {/* 
       <div ref={contactRef}>
         <Footer id="contact" showArrow={showArrow} />
       </div>
+      */}
     </main>
   );
 }

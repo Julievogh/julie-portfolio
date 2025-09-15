@@ -47,8 +47,6 @@ const projects = [
     },
     img: "/imgs/vildmad.png",
     tools: ["Illustrator", "HTML/CSS", "Research", "Figma"],
-    link: "https://www.figma.com/file/demo-vildmad",
-    linkLabel: "Figma",
   },
   {
     title: { dk: "Hvidovre I/F", en: "Hvidovre I/F" },
@@ -57,15 +55,8 @@ const projects = [
       en: "Redesign of Hvidovre I/F website focusing on registration, galleries, information, and showcasing the club. Work included UI/UX, Figma, video editing, research, testing, and frontend development in HTML/CSS, as well as team leadership and site modernization.",
     },
     img: "/imgs/hvidovre-if.png",
-    tools: [
-      "Figma",
-      "UI/UX",
-      "HTML/CSS",
-      "Video Editing",
-      "Research",
-      "Testing",
-    ],
-    link: "#",
+    tools: ["Figma", "UI/UX", "HTML/CSS", "Video Editing", "Research", "Testing"],
+    link: "https://valbyifeksamen.netlify.app/",
     linkLabel: "Website",
   },
   {
@@ -75,15 +66,8 @@ const projects = [
       en: "Visual website and branding for a light festival – presentation of events, images, and interactive info om udstillinger. Designed to create atmosphere and engagement.",
     },
     img: "/imgs/cphlightfest.png",
-    tools: [
-      "Figma",
-      "Adobe XD",
-      "HTML/CSS",
-      "Video Editing",
-      "Branding",
-      "UI/UX",
-    ],
-    link: "https://www.figma.com/file/lightfest",
+    tools: ["Figma", "Adobe XD", "HTML/CSS", "Video Editing", "Branding", "UI/UX"],
+    link: "https://www.figma.com/design/gdZfgfLe27NJuysKNgWWCw/Design?node-id=111-871&t=P4Ivm4r1LRhJXGQ0-1",
     linkLabel: "Figma",
   },
   {
@@ -94,8 +78,8 @@ const projects = [
     },
     img: "/imgs/leisner.png",
     tools: ["WordPress", "Figma", "UI/UX", "Video Production"],
-    link: "https://leisnerogsoen.dk",
-    linkLabel: "Website",
+    link: "https://www.figma.com/design/diKGdimKAHHv5aPorQyEet/Leisner-Redesign?node-id=7-65&t=hSUvnzkwzWdkygi7-1",
+    linkLabel: "Figma",
   },
 
   {
@@ -137,16 +121,9 @@ const projects = [
       en: "Visual concept and website for music festival – design, program, ticket sales, and SoMe. Focus on lively colors, illustration, and user journey.",
     },
     img: "/imgs/foofestival.png",
-    tools: [
-      "Next.js",
-      "Figma",
-      "Simple DB",
-      "Branding",
-      "Illustration",
-      "Customer Journey",
-    ],
-    link: "https://www.figma.com/file/foofestival",
-    linkLabel: "Figma",
+    tools: ["Next.js", "Figma", "Simple DB", "Branding", "Illustration", "Customer Journey"],
+    link: "https://foofestival.vercel.app/",
+    linkLabel: "Website",
   },
 
   {
@@ -594,7 +571,7 @@ export default function ProjectsPage() {
   const gallery = activeProject.gallery || [];
 
   return (
-    <main className="min-h-screen flex flex-col items-center bg-white text-orange-600 font-sans bg-[url('/imgs/paper-bg.png')] bg-repeat p-6 lg:p-12 scroll-smooth">
+    <main className="min-h-screen flex flex-col items-center bg-white text-orange-600 font-sans  p-6 lg:p-12 scroll-smooth">
       {/* Sprogtoggle */}
       <div className="fixed mt-12 lg:mt-2 top-4 right-6 z-50 flex gap-2 items-center ">
         <button
@@ -619,9 +596,7 @@ export default function ProjectsPage() {
 
       <div className="w-full max-w-6xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-left">
-            {lang === "dk" ? "Projekter" : "Projects"}
-          </h1>
+          <h1 className="text-3xl font-bold text-left">{lang === "dk" ? "Projekter" : "Projects"}</h1>
           <h2 className="text-2xl font-semibold text-orange-500 text-left italic">
             {lang === "dk" ? "(Seriøse og for sjov)" : "(Serious and for fun)"}
           </h2>
@@ -637,15 +612,11 @@ export default function ProjectsPage() {
             const galleryArr = project.gallery;
             return (
               <div key={project.title.dk} className="mb-10 last:mb-0">
-                <h3 className="text-xl font-bold mb-2">
-                  {project.title[lang]}
-                </h3>
+                <h3 className="text-xl font-bold mb-2">{project.title[lang]}</h3>
                 <div
                   className={
                     "rounded-xl shadow w-full h-[38vh] bg-white flex items-center justify-center mb-2 " +
-                    (project.title.dk === "Logos"
-                      ? "overflow-hidden"
-                      : "overflow-auto")
+                    (project.title.dk === "Logos" ? "overflow-hidden" : "overflow-auto")
                   }
                 >
                   <img
@@ -659,9 +630,7 @@ export default function ProjectsPage() {
                   <button
                     aria-label="Forrige"
                     disabled={mobileIdx === 0}
-                    onClick={() =>
-                      handleMobileGalleryIdx(i, -1, galleryArr.length)
-                    }
+                    onClick={() => handleMobileGalleryIdx(i, -1, galleryArr.length)}
                     className="p-2 rounded-full bg-orange-100 text-orange-600 disabled:opacity-30 cursor-pointer"
                   >
                     ‹
@@ -679,9 +648,7 @@ export default function ProjectsPage() {
                   <button
                     aria-label="Næste"
                     disabled={mobileIdx === galleryArr.length - 1}
-                    onClick={() =>
-                      handleMobileGalleryIdx(i, 1, galleryArr.length)
-                    }
+                    onClick={() => handleMobileGalleryIdx(i, 1, galleryArr.length)}
                     className="p-2 rounded-full bg-orange-100 text-orange-600 disabled:opacity-30 cursor-pointer"
                   >
                     ›
@@ -701,8 +668,7 @@ export default function ProjectsPage() {
                   </div>
                 )}
                 <p className="text-base text-center">
-                  {galleryArr[mobileIdx].title[lang]}:{" "}
-                  {galleryArr[mobileIdx].desc[lang]}
+                  {galleryArr[mobileIdx].title[lang]}: {galleryArr[mobileIdx].desc[lang]}
                 </p>
                 {/* --- Projekt-link (mobile) --- */}
                 {project.link && (
@@ -724,8 +690,7 @@ export default function ProjectsPage() {
                       <span role="img" aria-label="link">
                         🔗
                       </span>
-                      {project.linkLabel ||
-                        (lang === "dk" ? "Se projekt" : "See project")}
+                      {project.linkLabel || (lang === "dk" ? "Se projekt" : "See project")}
                     </a>
                   </div>
                 )}
@@ -777,8 +742,7 @@ export default function ProjectsPage() {
                     <span role="img" aria-label="link">
                       🔗
                     </span>
-                    {project.linkLabel ||
-                      (lang === "dk" ? "Se projekt" : "See project")}
+                    {project.linkLabel || (lang === "dk" ? "Se projekt" : "See project")}
                   </a>
                 </div>
               )}
@@ -804,10 +768,7 @@ export default function ProjectsPage() {
                     className="object-contain max-h-[38vh] max-w-full"
                   />
                 </div>
-                <div
-                  className="flex gap-2 mt-6 justify-left overflow-x-auto pb-2"
-                  style={{ maxWidth: "100%" }}
-                >
+                <div className="flex gap-2 mt-6 justify-left overflow-x-auto pb-2" style={{ maxWidth: "100%" }}>
                   {gallery.map((item, idx) => (
                     <button
                       key={`${activeProject.title.dk}-${idx}`}
@@ -832,12 +793,8 @@ export default function ProjectsPage() {
                   ))}
                 </div>
                 <div className="mt-4 bg-white/80 p-4 rounded shadow w-full text-center">
-                  <p className="font-bold text-lg mb-2">
-                    {gallery[activeGalleryIdx].title[lang]}
-                  </p>
-                  <p className="text-base mb-2">
-                    {gallery[activeGalleryIdx].desc[lang]}
-                  </p>
+                  <p className="font-bold text-lg mb-2">{gallery[activeGalleryIdx].title[lang]}</p>
+                  <p className="text-base mb-2">{gallery[activeGalleryIdx].desc[lang]}</p>
                   {/* --- Projekt-link (desktop) --- */}
                   {activeProject.link && (
                     <div className="flex justify-center mt-4">
@@ -858,8 +815,7 @@ export default function ProjectsPage() {
                         <span role="img" aria-label="link">
                           🔗
                         </span>
-                        {activeProject.linkLabel ||
-                          (lang === "dk" ? "Se projekt" : "See project")}
+                        {activeProject.linkLabel || (lang === "dk" ? "Se projekt" : "See project")}
                       </a>
                     </div>
                   )}
@@ -879,9 +835,7 @@ export default function ProjectsPage() {
                   />
                 </div>
                 <div className="mt-4 bg-white/80 p-4 rounded shadow w-full text-center">
-                  <p className="font-bold text-lg mb-2">
-                    {activeProject.title[lang]}
-                  </p>
+                  <p className="font-bold text-lg mb-2">{activeProject.title[lang]}</p>
                   <p className="text-base mb-2">{activeProject.desc[lang]}</p>
                   {activeProject.tools && (
                     <div className="flex flex-wrap gap-2 mt-6 justify-center">
@@ -915,8 +869,7 @@ export default function ProjectsPage() {
                         <span role="img" aria-label="link">
                           🔗
                         </span>
-                        {activeProject.linkLabel ||
-                          (lang === "dk" ? "Se projekt" : "See project")}
+                        {activeProject.linkLabel || (lang === "dk" ? "Se projekt" : "See project")}
                       </a>
                     </div>
                   )}
@@ -926,9 +879,7 @@ export default function ProjectsPage() {
           </div>
           {/* Right: Project selectors */}
           <div className="flex-1 flex flex-col p-6 gap-2 justify-center max-w-lg">
-            <h2 className="text-2xl font-bold mb-8 text-orange-800">
-              {lang === "dk" ? "Projekter" : "Projects"}
-            </h2>
+            <h2 className="text-2xl font-bold mb-8 text-orange-800">{lang === "dk" ? "Projekter" : "Projects"}</h2>
             <div className="flex flex-col gap-1 mb-8 max-h-[400px] overflow-y-auto pr-2">
               {projects.map((project, idx) => (
                 <button
